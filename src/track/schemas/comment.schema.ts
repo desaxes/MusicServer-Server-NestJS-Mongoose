@@ -11,7 +11,7 @@ export class Comment {
     username: string
     @Prop()
     text: string
-    @Prop({ type: ObjectId, ref: 'Track' })
-    trackId: Track
+    @Prop()
+    trackId: ObjectId
 }
 export const CommentSchema = SchemaFactory.createForClass(Comment)

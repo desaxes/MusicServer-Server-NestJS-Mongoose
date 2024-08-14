@@ -47,6 +47,7 @@ export class TrackController {
     //Комментарий
     @Post('/comment')
     addComment(@Body() dto: CreateCommentDto) {
+        console.log(dto)
         return this.trackService.addComment(dto)
     }
     //Комменты для трека

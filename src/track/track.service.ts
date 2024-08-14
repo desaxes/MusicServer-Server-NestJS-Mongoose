@@ -24,7 +24,7 @@ export class TrackService {
         return track
     }
     //Получение всех треков
-    async getAll(count = 10, offset = 0): Promise<Track[]> {
+    async getAll(count = 100, offset = 0): Promise<Track[]> {
         const tracks = await this.trackModel.find().skip(offset).limit(count)
         return tracks
     }
@@ -40,12 +40,13 @@ export class TrackService {
     }
     //Добавление комментария
     async addComment(dto: CreateCommentDto): Promise<Comment> {
-        const track = await this.trackModel.findById(dto.trackId)
+        // const track = await this.trackModel.findById(dto.trackId)
+
         const comment = await this.commentModel.create({ ...dto })
         // @ts-ignore
         //Сохранение id комментария в треке
-        track.comments.push(comment._id)
-        await track.save()
+        // track.comments.push(comment._id)
+        // await track.save()
         return comment
     }
     //Получение комментариев к конкретному треку
