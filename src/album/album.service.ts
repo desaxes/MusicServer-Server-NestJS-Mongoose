@@ -33,8 +33,8 @@ export class AlbumService {
     }
     //Удаление альбома
     async delete(id: ObjectId) {
-        const album = await this.albumModel.findOneAndDelete(id)
-        return album._id
+        const album = await this.albumModel.deleteOne({ _id: id })
+        return id
     }
     async addTrack(trackId: ObjectId, albumId: ObjectId): Promise<ObjectId> {
         const album = await this.albumModel.findById(albumId)
@@ -52,7 +52,7 @@ export class AlbumService {
     }
     async getTracks(albumId: ObjectId) {
         const album = await this.albumModel.findById(albumId)
-        const tracks = await this.trackModel.find({_id: {$in: album.tracks}})
+        const tracks = await this.trackModel.find({ _id: { $in: album.tracks } })
         return tracks
     }
 }

@@ -35,8 +35,8 @@ export class TrackService {
     }
     //Удаление трека
     async delete(id: ObjectId) {
-        const track = await this.trackModel.findOneAndDelete(id)
-        return track._id
+        const track = await this.trackModel.deleteOne({ _id: id })
+        return id
     }
     //Добавление комментария
     async addComment(dto: CreateCommentDto): Promise<Comment> {
